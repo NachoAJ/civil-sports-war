@@ -4,12 +4,13 @@ class Player {
 		this.x = x
 		this.gameHeight = gameHeight
 		this.y = this.gameHeight - 100
+		this.y0 = this.gameHeight - 100
 		this.image = new Image()
 		this.image.src = src
 
-		this.width = 60
-		this.height = 140
-		this.velX = 5
+		this.width = 80
+		this.height = 100
+		this.velX = 8
 		this.velY = 1
 		this.gravity = 0.5
 		this.serListeners()
@@ -38,8 +39,10 @@ class Player {
 					this.x -= this.velX
 					break
 				case 38:
-					this.y -= 50
-					this.velY -= 10
+					if (this.y === this.y0) {
+						this.y -= 50
+						this.velY -= 10
+					}
 					break
 			}
 		}
