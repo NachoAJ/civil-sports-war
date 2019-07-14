@@ -1,0 +1,45 @@
+class Ball {
+	constructor(ctx, gameHeight, gameWidth) {
+		this.ctx = ctx
+		this.gameHeight = gameHeight
+		this.gameWidth = gameWidth
+		this.x = this.gameWidth / 2
+		this.y = this.gameHeight - 400
+		this.width = 35
+		this.height = 35
+		this.velY = 1
+		this.velX = 0
+		this.bounce = 0.7
+		this.gravity = 0.5
+		this.friction = 0.03
+		this.image = new Image()
+		this.image.src = 'images/ball.png'
+	}
+
+	draw() {
+		this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
+	}
+
+	pickBall() {}
+
+	move() {
+		this.y += this.velY
+		this.velY += this.gravity
+		this.x += this.velX
+		if (this.x + this.width > this.gameWidth || this.x < 0) {
+			this.velX *= -1
+		}
+		if (this.y + this.height > this.gameHeight - 100) {
+			this.y = this.gameHeight - this.height - 100
+			this.velY *= -this.bounce
+			if (this.velY < 0 && this.velY > -2.5) this.velY = 0
+			if (Math.abs(this.velX) < 1.1) this.velX = 0
+			this.xFriction()
+		}
+	}
+
+	xFriction() {
+		if (this.velX > 0) this.velX -= this.friction
+		if (this.velX < 0) this.velX += this.friction
+	}
+}

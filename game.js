@@ -20,15 +20,23 @@ let Game = {
 		this.reset()
 		this.interval = setInterval(() => {
 			this.drawAll()
+			this.moveAll()
 		}, 1000 / this.fps)
 	},
 
 	reset: function() {
 		this.player = new Player(this.ctx, 0, this.height, 'images/deadpool.png')
+		this.ball = new Ball(this.ctx, this.height, this.width)
 	},
 
 	drawAll: function() {
 		Background.draw(this.ctx, this.width, this.height)
 		this.player.draw()
+		this.ball.draw()
+	},
+
+	moveAll: function() {
+		this.ball.move()
+		this.player.move()
 	}
 }
