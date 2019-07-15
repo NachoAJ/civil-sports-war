@@ -68,18 +68,5 @@ class Player {
 					break
 			}
 		})
-		// document.onkeyup = e => {
-		// 	switch (e.keyCode) {
-		// 		case this.keys.RIGHT.code:
-		// 			this.keys.RIGHT.down = false
-		// 			break
-		// 		case this.keys.LEFT.code:
-		// 			this.keys.LEFT.down = false
-		// 			break
-		// 		case this.keys.JUMP.code:
-		// 			this.keys.JUMP.down = false
-		// 			break
-		// 	}
-		// }
 	}
 }

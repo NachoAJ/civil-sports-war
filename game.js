@@ -13,6 +13,7 @@ let Game = {
 		this.height = window.innerHeight * 0.98
 		this.canvas.width = this.width
 		this.canvas.height = this.height
+		this.setListeners()
 		this.start()
 	},
 
@@ -23,23 +24,23 @@ let Game = {
 			this.moveAll()
 			this.pickBall1()
 			this.pickBall2()
-			this.setListeners()
 		}, 1000 / this.fps)
 	},
 
 	reset: function() {
 		this.player = new Player(this.ctx, 0, this.height, 'images/deadpool-small.png', {
-			RIGHT: { code: 39, down: false },
-			LEFT: { code: 37, down: false },
-			JUMP: { code: 38, down: false }
-		})
-		this.player2 = new Player(this.ctx, 150, this.height, 'images/ironman.png', {
 			RIGHT: { code: 68, down: false },
 			LEFT: { code: 65, down: false },
 			JUMP: { code: 87, down: false }
 		})
+		this.player2 = new Player(this.ctx, this.width - this.player.width, this.height, 'images/ironman.png', {
+			RIGHT: { code: 39, down: false },
+			LEFT: { code: 37, down: false },
+			JUMP: { code: 38, down: false }
+		})
 		this.ball = new Ball(this.ctx, this.height, this.width)
-		this.basket = new Basket(this.ctx, this.width, this.height)
+		this.basket = new Basket(this.ctx, this.width, this.height, this.width - 30, 1, -10)
+		this.basket2 = new Basket(this.ctx, this.width, this.height, 15, -1, 23)
 	},
 
 	drawAll: function() {
@@ -48,6 +49,7 @@ let Game = {
 		this.player2.draw()
 		this.ball.draw()
 		this.basket.draw()
+		this.basket2.draw()
 	},
 
 	moveAll: function() {
@@ -89,14 +91,14 @@ let Game = {
 
 	setListeners: function() {
 		document.addEventListener('keypress', e => {
-			if (e.keyCode === 32 && this.pickBall1()) {
+			if (e.keyCode === 103 && this.pickBall1()) {
 				this.ball.x += 60
 				this.ball.velX = 5
 				this.ball.velY = -15
 			}
 		})
 		document.addEventListener('keypress', e => {
-			if (e.keyCode === 103 && this.pickBall2()) {
+			if (e.keyCode === 108 && this.pickBall2()) {
 				this.ball.x -= 60
 				this.ball.velX = -5
 				this.ball.velY = -15
@@ -130,6 +132,14 @@ let Game = {
 			this.ball.y < this.basket.rimY + this.basket.rimHeight
 		) {
 			this.ball.velY *= -this.ball.bounce
+		}
+		if (
+			//Colision bola con el tablero
+			this.ball.x < this.basket2.x + this.basket2.width &&
+			this.ball.y < this.basket2.y + this.basket2.height &&
+			this.ball.y + this.ball.height > this.basket2.y
+		) {
+			this.ball.velX *= -1
 		}
 	}
 }

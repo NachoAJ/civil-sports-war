@@ -1,15 +1,17 @@
 class Basket {
-	constructor(ctx, gameWidth, gameHeight) {
+	constructor(ctx, gameWidth, gameHeight, x, direction, distance) {
 		this.ctx = ctx
 		this.gameHeight = gameHeight
 		this.gameWidth = gameWidth
+		this.direction = direction
+		this.distance = distance
 		this.height = 150
 		this.width = 15
-		this.x = this.gameWidth - 30
+		this.x = x
 		this.y = this.gameHeight / 2 - this.height
 		this.rimHeight = 10
 		this.rimWidth = 80
-		this.rimX = this.x - this.rimWidth - 10
+		this.rimX = (this.x - this.rimWidth + this.distance) * this.direction
 		this.rimY = this.y + this.height - 15
 	}
 
