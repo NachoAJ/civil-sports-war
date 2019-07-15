@@ -28,7 +28,7 @@ let Game = {
 	},
 
 	reset: function() {
-		this.player = new Player(this.ctx, 0, this.height, 'images/deadpool-small.png', {
+		this.player = new Player(this.ctx, 0, this.height, 'images/deadpool.png', {
 			RIGHT: { code: 68, down: false },
 			LEFT: { code: 65, down: false },
 			JUMP: { code: 87, down: false }
@@ -134,12 +134,28 @@ let Game = {
 			this.ball.velY *= -this.ball.bounce
 		}
 		if (
-			//Colision bola con el tablero
+			//Colision bola con el tablero izquierdo
 			this.ball.x < this.basket2.x + this.basket2.width &&
 			this.ball.y < this.basket2.y + this.basket2.height &&
 			this.ball.y + this.ball.height > this.basket2.y
 		) {
 			this.ball.velX *= -1
+		}
+		if (
+			this.basket2.rimX + this.basket2.rimWidth > this.ball.x &&
+			this.basket2.rimX + this.basket2.rimWidth < this.ball.x + this.ball.width &&
+			this.basket2.rimY > this.ball.y &&
+			this.basket2.rimY < this.ball.y + this.ball.height
+		) {
+			this.ball.velY *= -this.ball.bounce
+		}
+		if (
+			this.basket2.rimX > this.ball.x &&
+			this.basket2.rimX < this.ball.x + this.ball.width &&
+			this.basket2.rimY > this.ball.y &&
+			this.basket2.rimY < this.ball.y + this.ball.height
+		) {
+			this.ball.velY *= -this.ball.bounce
 		}
 	}
 }
