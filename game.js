@@ -15,9 +15,9 @@ let Game = {
 		this.height = window.innerHeight * 0.99
 		this.canvas.width = this.width
 		this.canvas.height = this.height
-		// this.setListeners()
-		// this.start()
-		this.startVolley()
+		this.setListeners()
+		this.start()
+		// this.startVolley()
 	},
 
 	start: function() {
@@ -263,6 +263,8 @@ let Game = {
 			JUMP: { code: 38, down: false }
 		})
 		this.ball = new Ball(this.ctx, this.height, this.width, this.width / 4)
+		this.scoreboard = ScoreBoard
+		this.scoreboard.init(this.ctx)
 	},
 
 	drawAllVolley: function() {
@@ -270,6 +272,8 @@ let Game = {
 		this.player.draw()
 		this.player2.draw()
 		this.ball.draw()
+		VolleyNet.draw(this.ctx, this.width, this.height)
+		this.drawScoreVolley()
 	},
 
 	moveAllVolley: function() {
@@ -278,6 +282,7 @@ let Game = {
 		this.player2.move(this.framesCounter)
 		this.ball.move()
 		this.volleyHit()
+		this.volleyColisions()
 	},
 
 	volleyHit: function() {
@@ -298,6 +303,25 @@ let Game = {
 		) {
 			this.ball.velX = -5
 			this.ball.velY = -15
+		}
+	},
+
+	drawScoreVolley: function() {
+		this.scoreboard.update(this.score1, this.score2, this.width)
+	},
+
+	volleyColisions: function() {
+		if (
+			this.ball.x < VolleyNet.x + VolleyNet.width &&
+			this.ball.x + this.ball.width > VolleyNet.x &&
+			this.ball.y + this.ball.height > VolleyNet.y
+		) {
+			this.ball.velX *= -1
+		}
+		if (this.player.x + this.player.width > VolleyNet.x) this.player.x = VolleyNet.x - this.player.width
+		if (this.player2.x < VolleyNet.x + VolleyNet.width) this.player2.x = VolleyNet.x + VolleyNet.width
+		if (this.ball.y + this.ball.height === this.height - 100) {
+			this.score1++
 		}
 	}
 }

@@ -13,7 +13,7 @@ class Ball {
 		this.gravity = 0.5
 		this.friction = 0.07
 		this.image = new Image()
-		this.image.src = 'images/ball.png'
+		this.image.src = 'images/volleyball.png'
 	}
 
 	draw() {
