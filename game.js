@@ -15,8 +15,9 @@ let Game = {
 		this.height = window.innerHeight * 0.99
 		this.canvas.width = this.width
 		this.canvas.height = this.height
-		this.setListeners()
-		this.start()
+		// this.setListeners()
+		// this.start()
+		this.startVolley()
 	},
 
 	start: function() {
@@ -239,5 +240,26 @@ let Game = {
 		} else if (this.ball.x > this.width) {
 			this.ball.x = this.width - this.ball.width
 		}
+	},
+
+	startVolley: function() {
+		this.resetVolley()
+		this.interval = setInterval(() => {
+			this.framesCounter++
+		}, 1000 / this.fps)
+	},
+
+	resetVolley: function() {
+		this.player = new Player(this.ctx, 0, this.height, 'images/america-sprite.png', {
+			RIGHT: { code: 68, down: false },
+			LEFT: { code: 65, down: false },
+			JUMP: { code: 87, down: false }
+		})
+		this.player2 = new Player(this.ctx, this.width - this.player.width, this.height, 'images/iron-sprite.png', {
+			RIGHT: { code: 39, down: false },
+			LEFT: { code: 37, down: false },
+			JUMP: { code: 38, down: false }
+		})
+		this.ball = new Ball(this.ctx, this.height, this.width)
 	}
 }
