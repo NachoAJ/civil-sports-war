@@ -42,7 +42,7 @@ let Game = {
 			LEFT: { code: 37, down: false },
 			JUMP: { code: 38, down: false }
 		})
-		this.ball = new Ball(this.ctx, this.height, this.width)
+		this.ball = new Ball(this.ctx, this.height, this.width, this.width / 2)
 		this.basket = new Basket(this.ctx, this.width, this.height, this.width - 30, 1, -10)
 		this.basket2 = new Basket(this.ctx, this.width, this.height, 15, -1, 23)
 		this.scoreboard = ScoreBoard
@@ -245,21 +245,59 @@ let Game = {
 	startVolley: function() {
 		this.resetVolley()
 		this.interval = setInterval(() => {
+			this.drawAllVolley()
+			this.moveAllVolley()
 			this.framesCounter++
 		}, 1000 / this.fps)
 	},
 
 	resetVolley: function() {
-		this.player = new Player(this.ctx, 0, this.height, 'images/america-sprite.png', {
+		this.player = new Player(this.ctx, this.width / 4, this.height, 'images/america-sprite.png', {
 			RIGHT: { code: 68, down: false },
 			LEFT: { code: 65, down: false },
 			JUMP: { code: 87, down: false }
 		})
-		this.player2 = new Player(this.ctx, this.width - this.player.width, this.height, 'images/iron-sprite.png', {
+		this.player2 = new Player(this.ctx, (this.width * 3) / 4, this.height, 'images/iron-sprite.png', {
 			RIGHT: { code: 39, down: false },
 			LEFT: { code: 37, down: false },
 			JUMP: { code: 38, down: false }
 		})
-		this.ball = new Ball(this.ctx, this.height, this.width)
+		this.ball = new Ball(this.ctx, this.height, this.width, this.width / 4)
+	},
+
+	drawAllVolley: function() {
+		Background.draw(this.ctx, this.width, this.height)
+		this.player.draw()
+		this.player2.draw()
+		this.ball.draw()
+	},
+
+	moveAllVolley: function() {
+		Background.move(this.width)
+		this.player.move(this.framesCounter)
+		this.player2.move(this.framesCounter)
+		this.ball.move()
+		this.volleyHit()
+	},
+
+	volleyHit: function() {
+		if (
+			this.player.y - this.player.height < this.ball.y + this.ball.height &&
+			this.player.x + this.player.width > this.ball.x &&
+			this.player.x < this.ball.x + this.ball.width &&
+			this.player.y - 70 > this.ball.y
+		) {
+			this.ball.velX = 5
+			this.ball.velY = -15
+		}
+		if (
+			this.player2.y - this.player2.height < this.ball.y + this.ball.height &&
+			this.player2.x + this.player2.width > this.ball.x &&
+			this.player2.x < this.ball.x + this.ball.width &&
+			this.player2.y - 70 > this.ball.y
+		) {
+			this.ball.velX = -5
+			this.ball.velY = -15
+		}
 	}
 }

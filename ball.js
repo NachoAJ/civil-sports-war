@@ -1,9 +1,9 @@
 class Ball {
-	constructor(ctx, gameHeight, gameWidth) {
+	constructor(ctx, gameHeight, gameWidth, x) {
 		this.ctx = ctx
 		this.gameHeight = gameHeight
 		this.gameWidth = gameWidth
-		this.x = this.gameWidth / 2
+		this.x = x
 		this.y = this.gameHeight - 400
 		this.width = 30
 		this.height = 30
