@@ -26,16 +26,17 @@ let Game = {
 			this.moveAll()
 			this.pickBall1()
 			this.pickBall2()
+			this.framesCounter++
 		}, 1000 / this.fps)
 	},
 
 	reset: function() {
-		this.player = new Player(this.ctx, 0, this.height, 'images/deadpool.png', {
+		this.player = new Player(this.ctx, 0, this.height, 'images/america-sprite.png', {
 			RIGHT: { code: 68, down: false },
 			LEFT: { code: 65, down: false },
 			JUMP: { code: 87, down: false }
 		})
-		this.player2 = new Player(this.ctx, this.width - this.player.width, this.height, 'images/ironman.png', {
+		this.player2 = new Player(this.ctx, this.width - this.player.width, this.height, 'images/iron-sprite.png', {
 			RIGHT: { code: 39, down: false },
 			LEFT: { code: 37, down: false },
 			JUMP: { code: 38, down: false }
@@ -62,10 +63,11 @@ let Game = {
 
 	moveAll: function() {
 		this.ball.move()
-		this.player.move()
-		this.player2.move()
+		this.player.move(this.framesCounter)
+		this.player2.move(this.framesCounter)
 		this.colisions()
 		this.outOfBounds()
+		Background.move(this.width)
 	},
 
 	playersColision: function() {
