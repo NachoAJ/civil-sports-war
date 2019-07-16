@@ -13,6 +13,7 @@ class Player {
 		this.width = 80
 		this.height = 100
 		this.velX = 8
+		this.velX0 = 8
 		this.velY = 1
 		this.gravity = 0.5
 		this.setListeners()

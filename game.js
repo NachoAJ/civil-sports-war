@@ -68,6 +68,16 @@ let Game = {
 		this.colisions()
 		this.outOfBounds()
 		Background.move(this.width)
+		this.perks()
+	},
+
+	perks: function() {
+		if (this.score1 >= 5) this.basket.move()
+		if (this.score2 >= 5) this.basket2.move()
+		if (this.score1 - this.score2 > 2) this.player2.velX = this.player2.velX0 + 7
+		else this.player2.velX = this.player2.velX0
+		if (this.score2 - this.score1 > 2) this.player.velX = this.player.velX0 + 7
+		else this.player.velX = this.player.velX0
 	},
 
 	playersColision: function() {
