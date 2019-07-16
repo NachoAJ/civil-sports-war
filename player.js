@@ -12,6 +12,10 @@ class Player {
 		this.keys = keys
 		this.width = 80
 		this.height = 100
+		this.jump = 50
+		this.jump0 = 50
+		this.velJump = -10
+		this.velJump0 = -10
 		this.velX = 8
 		this.velX0 = 8
 		this.velY = 1
@@ -50,8 +54,8 @@ class Player {
 		}
 		if (this.keys.JUMP.down) {
 			if (this.y === this.y0) {
-				this.y -= 50
-				this.velY -= 10
+				this.y -= this.jump
+				this.velY = this.velJump
 			}
 		}
 	}

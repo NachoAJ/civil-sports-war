@@ -78,6 +78,10 @@ let Game = {
 		else this.player2.velX = this.player2.velX0
 		if (this.score2 - this.score1 > 2) this.player.velX = this.player.velX0 + 7
 		else this.player.velX = this.player.velX0
+		if (this.score2 - this.score1 > 5) this.player.velJump = -15
+		else this.player.velJump = this.player.velJump0
+		if (this.score1 - this.score2 > 5) this.player2.velJump = -15
+		else this.player2.velJump = this.player2.velJump0
 	},
 
 	playersColision: function() {
