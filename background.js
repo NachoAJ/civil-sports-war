@@ -2,9 +2,9 @@ let Background = {
 	velX: 0.2,
 	posX: 0,
 
-	draw: function(ctx, width, height) {
+	draw: function(ctx, width, height, src, color) {
 		let bg = new Image()
-		bg.src = 'images/bg.gif'
+		bg.src = src
 		ctx.drawImage(bg, 0, 0, width, height)
 		let cloud = new Image()
 		cloud.src = 'images/cloud.png'
@@ -12,7 +12,7 @@ let Background = {
 		ctx.drawImage(cloud, this.posX + 800, 80, 250, 220)
 		ctx.drawImage(cloud, this.posX + width + 800, 80, 250, 220)
 		ctx.drawImage(cloud, this.posX + width, 0, 250, 220)
-		ctx.fillStyle = 'black'
+		ctx.fillStyle = color
 		ctx.fillRect(0, height - 100, width, height)
 	},
 

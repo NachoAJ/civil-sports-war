@@ -10,8 +10,16 @@
 			integrity="sha256-dARYuC3pd0wa/7R4Hkt/sR2zfLHCgbnVAQ2sPwhNe0A="
 			crossorigin="anonymous"
 		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap-grid.min.css"
+			integrity="sha256-D9AvR0EzkNZoWZVSvI3ch+uf/Z5izrIpcbsykVphwPU="
+			crossorigin="anonymous"
+		/>
 		<link rel="stylesheet" href="style.css" />
 		<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap" rel="stylesheet" />
+		<audio id="bounce" src="sounds/bounce.mp3"></audio>
+		<audio id="crowd" src="sounds/crowd.mp3"></audio>
 		<script src="scoreboard.js"></script>
 		<script src="volleynet.js"></script>
 		<script src="basket.js"></script>
@@ -24,9 +32,27 @@
 	</head>
 	<body>
 		<h1>Civil Sports War</h1>
-		<div class="flexbox">
-			<button id="start-basket">Play Basketball</button>
-			<button id="start-volley">Play Volleyball</button>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<button id="start-basket">Play Basketball</button>
+					<h2>Captain America controls</h2>
+					<p><img src="images/key-g.png" alt="Tecla G" /> : Shoot</p>
+					<p><img src="images/key-w.png" alt="Tecla Up" /> : Jump</p>
+					<p><img src="images/key-a.png" alt="Tecla Left" /> : Move Left</p>
+					<p><img src="images/key-d.png" alt="Tecla Right" /> : Move Right</p>
+				</div>
+				<div class="col-md-6">
+					<button id="start-volley">Play Volleyball</button>
+					<div class="margin-left">
+						<h2>Ironman controls</h2>
+						<p><img src="images/key-l.png" alt="Tecla G" /> : Shoot</p>
+						<p><img src="images/key-arrow-up.png" alt="Tecla Up" /> : Jump</p>
+						<p><img src="images/key-arrow-left.png" alt="Tecla Left" /> : Move Left</p>
+						<p><img src="images/key-arrow-right.png" alt="Tecla Right" /> : Move Right</p>
+					</div>
+				</div>
+			</div>
 		</div>
 		<canvas id="game-basket" class="display-none"></canvas>
 		<canvas id="game-volley" class="display-none"></canvas>

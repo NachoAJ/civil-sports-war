@@ -30,6 +30,10 @@ class Ball {
 		if (this.y + this.height > this.gameHeight - 100) {
 			this.y = this.gameHeight - this.height - 100
 			this.velY *= -this.bounce
+			console.log(this.velY)
+			if (this.velY != -0.7) {
+				document.getElementById('bounce').play()
+			}
 			if (this.velY < 0 && this.velY > -2.5) this.velY = 0
 			if (Math.abs(this.velX) < 1.1) this.velX = 0
 			this.xFriction()

@@ -62,7 +62,7 @@ let Game = {
 	},
 
 	drawAll: function() {
-		Background.draw(this.ctx, this.width, this.height)
+		Background.draw(this.ctx, this.width, this.height, 'images/bg.gif', 'black')
 		this.player.draw()
 		this.player2.draw()
 		this.ball.draw()
@@ -226,6 +226,7 @@ let Game = {
 			this.ball.velX = 0
 			this.player.x = 0
 			this.player2.x = this.width - this.player2.width
+			document.getElementById('crowd').play()
 			this.score1++
 		}
 
@@ -240,6 +241,7 @@ let Game = {
 			this.ball.velX = 0
 			this.player.x = 0
 			this.player2.x = this.width - this.player2.width
+			document.getElementById('crowd').play()
 			this.score2++
 		}
 	},
@@ -279,7 +281,7 @@ let Game = {
 	},
 
 	drawAllVolley: function() {
-		Background.draw(this.ctx, this.width, this.height)
+		Background.draw(this.ctx, this.width, this.height, 'images/volley-bg.jpg', '#f0d870')
 		this.player.draw()
 		this.player2.draw()
 		this.ball.draw()
@@ -341,6 +343,7 @@ let Game = {
 			this.ball.velX = 0
 			this.player2.x = (this.width * 3) / 4
 			this.player.x = this.width / 4
+			document.getElementById('crowd').play()
 			this.score2++
 		}
 		if (this.ball.y + this.ball.height === this.height - 100 && this.ball.x > VolleyNet.x + VolleyNet.width) {
@@ -349,12 +352,13 @@ let Game = {
 			this.ball.velX = 0
 			this.player2.x = (this.width * 3) / 4
 			this.player.x = this.width / 4
+			document.getElementById('crowd').play()
 			this.score1++
 		}
 	},
 
 	gameOver() {
-		if (this.score1 > 1 || this.score2 > 1) {
+		if (this.score1 > 10 || this.score2 > 10) {
 			if (Math.abs(this.score1 - this.score2) > 1) {
 				if (this.score1 > this.score2) {
 					this.ctx.fillText(`CAPTAIN AMERICA WINS!!!`, 150, this.height / 2)
