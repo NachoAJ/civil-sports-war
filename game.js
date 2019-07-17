@@ -8,19 +8,28 @@ let Game = {
 	score2: 0,
 	framesCounter: 0,
 
-	init: function() {
-		this.canvas = document.getElementById('game')
+	initBasket: function() {
+		this.canvas = document.getElementById('game-basket')
 		this.ctx = this.canvas.getContext('2d')
 		this.width = window.innerWidth * 0.99
 		this.height = window.innerHeight * 0.99
 		this.canvas.width = this.width
 		this.canvas.height = this.height
-		// this.setListeners()
-		// this.start()
+		this.startBasket()
+	},
+
+	initVolley: function() {
+		this.canvas = document.getElementById('game-volley')
+		this.ctx = this.canvas.getContext('2d')
+		this.width = window.innerWidth * 0.99
+		this.height = window.innerHeight * 0.99
+		this.canvas.width = this.width
+		this.canvas.height = this.height
 		this.startVolley()
 	},
 
-	start: function() {
+	startBasket: function() {
+		this.setListeners()
 		this.reset()
 		this.interval = setInterval(() => {
 			this.drawAll()

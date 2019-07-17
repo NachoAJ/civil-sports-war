@@ -10,6 +10,8 @@
 			integrity="sha256-dARYuC3pd0wa/7R4Hkt/sR2zfLHCgbnVAQ2sPwhNe0A="
 			crossorigin="anonymous"
 		/>
+		<link rel="stylesheet" href="style.css" />
+		<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap" rel="stylesheet" />
 		<script src="scoreboard.js"></script>
 		<script src="volleynet.js"></script>
 		<script src="basket.js"></script>
@@ -21,6 +23,12 @@
 		<title>Basketball</title>
 	</head>
 	<body>
-		<canvas id="game"></canvas>
+		<h1>Civil Sports War</h1>
+		<div class="flexbox">
+			<button id="start-basket">Play Basketball</button>
+			<button id="start-volley">Play Volleyball</button>
+		</div>
+		<canvas id="game-basket" class="display-none"></canvas>
+		<canvas id="game-volley" class="display-none"></canvas>
 	</body>
 </html>

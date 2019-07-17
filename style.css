@@ -1,0 +1,39 @@
+body {
+	background-image: url(images/initial-bg.jpg);
+	background-size: cover;
+}
+
+h1 {
+	text-align: center;
+	color: white;
+	font-size: 5em;
+	text-transform: uppercase;
+	background: black;
+	border: 1px solid;
+	letter-spacing: 5px;
+	font-family: 'Alfa Slab One', cursive;
+}
+
+button {
+	padding: 15px 30px;
+	margin: 200px;
+	text-transform: uppercase;
+	font-weight: bold;
+	border: 0px;
+	color: white;
+	border-radius: 3px;
+	background: #ac2921;
+}
+
+.display-none {
+	display: none;
+}
+
+.display {
+	display: block;
+}
+
+.flexbox {
+	display: flex;
+	justify-content: center;
+}
