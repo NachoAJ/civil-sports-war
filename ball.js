@@ -1,5 +1,5 @@
 class Ball {
-	constructor(ctx, gameHeight, gameWidth, x) {
+	constructor(ctx, gameHeight, gameWidth, x, src) {
 		this.ctx = ctx
 		this.gameHeight = gameHeight
 		this.gameWidth = gameWidth
@@ -13,14 +13,12 @@ class Ball {
 		this.gravity = 0.5
 		this.friction = 0.07
 		this.image = new Image()
-		this.image.src = 'images/volleyball.png'
+		this.image.src = src
 	}
 
 	draw() {
 		this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
 	}
-
-	pickBall() {}
 
 	move() {
 		this.y += this.velY

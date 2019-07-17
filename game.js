@@ -15,9 +15,9 @@ let Game = {
 		this.height = window.innerHeight * 0.99
 		this.canvas.width = this.width
 		this.canvas.height = this.height
-		this.setListeners()
-		this.start()
-		// this.startVolley()
+		// this.setListeners()
+		// this.start()
+		this.startVolley()
 	},
 
 	start: function() {
@@ -42,7 +42,7 @@ let Game = {
 			LEFT: { code: 37, down: false },
 			JUMP: { code: 38, down: false }
 		})
-		this.ball = new Ball(this.ctx, this.height, this.width, this.width / 2)
+		this.ball = new Ball(this.ctx, this.height, this.width, this.width / 2, 'images/ball.png')
 		this.basket = new Basket(this.ctx, this.width, this.height, this.width - 30, 1, -10)
 		this.basket2 = new Basket(this.ctx, this.width, this.height, 15, -1, 23)
 		this.scoreboard = ScoreBoard
@@ -262,7 +262,7 @@ let Game = {
 			LEFT: { code: 37, down: false },
 			JUMP: { code: 38, down: false }
 		})
-		this.ball = new Ball(this.ctx, this.height, this.width, this.width / 4)
+		this.ball = new Ball(this.ctx, this.height, this.width, this.width / 4, 'images/volleyball.png')
 		this.scoreboard = ScoreBoard
 		this.scoreboard.init(this.ctx)
 	},
@@ -292,8 +292,8 @@ let Game = {
 			this.player.x < this.ball.x + this.ball.width &&
 			this.player.y - 70 > this.ball.y
 		) {
-			this.ball.velX = 5
-			this.ball.velY = -15
+			this.ball.velX = Math.random() * (7 - 5) + 5
+			this.ball.velY = -(Math.random() * (18 - 15) + 15)
 		}
 		if (
 			this.player2.y - this.player2.height < this.ball.y + this.ball.height &&
@@ -301,8 +301,8 @@ let Game = {
 			this.player2.x < this.ball.x + this.ball.width &&
 			this.player2.y - 70 > this.ball.y
 		) {
-			this.ball.velX = -5
-			this.ball.velY = -15
+			this.ball.velX = -(Math.random() * (7 - 5) + 5)
+			this.ball.velY = -(Math.random() * (18 - 15) + 15)
 		}
 	},
 
@@ -316,11 +316,28 @@ let Game = {
 			this.ball.x + this.ball.width > VolleyNet.x &&
 			this.ball.y + this.ball.height > VolleyNet.y
 		) {
-			this.ball.velX *= -1
+			if (this.ball.y < VolleyNet.y) {
+				this.ball.velY = -(Math.random() * (18 - 15) + 15)
+			} else {
+				this.ball.velX *= -1
+			}
 		}
 		if (this.player.x + this.player.width > VolleyNet.x) this.player.x = VolleyNet.x - this.player.width
 		if (this.player2.x < VolleyNet.x + VolleyNet.width) this.player2.x = VolleyNet.x + VolleyNet.width
-		if (this.ball.y + this.ball.height === this.height - 100) {
+		if (this.ball.y + this.ball.height === this.height - 100 && this.ball.x + this.ball.width < VolleyNet.x) {
+			this.ball.x = (this.width * 3) / 4
+			this.ball.y = this.height - 400
+			this.ball.velX = 0
+			this.player2.x = (this.width * 3) / 4
+			this.player.x = this.width / 4
+			this.score2++
+		}
+		if (this.ball.y + this.ball.height === this.height - 100 && this.ball.x > VolleyNet.x + VolleyNet.width) {
+			this.ball.x = this.width / 4
+			this.ball.y = this.height - 400
+			this.ball.velX = 0
+			this.player2.x = (this.width * 3) / 4
+			this.player.x = this.width / 4
 			this.score1++
 		}
 	}
