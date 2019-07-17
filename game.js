@@ -34,6 +34,7 @@ let Game = {
 		this.interval = setInterval(() => {
 			this.drawAll()
 			this.moveAll()
+			this.gameOver()
 			this.pickBall1()
 			this.pickBall2()
 			this.framesCounter++
@@ -256,6 +257,7 @@ let Game = {
 		this.interval = setInterval(() => {
 			this.drawAllVolley()
 			this.moveAllVolley()
+			this.gameOver()
 			this.framesCounter++
 		}, 1000 / this.fps)
 	},
@@ -348,6 +350,22 @@ let Game = {
 			this.player2.x = (this.width * 3) / 4
 			this.player.x = this.width / 4
 			this.score1++
+		}
+	},
+
+	gameOver() {
+		if (this.score1 > 1 || this.score2 > 1) {
+			if (Math.abs(this.score1 - this.score2) > 1) {
+				if (this.score1 > this.score2) {
+					this.ctx.fillText(`CAPTAIN AMERICA WINS!!!`, 150, this.height / 2)
+					this.ctx.strokeText(`CAPTAIN AMERICA WINS!!!`, 150, this.height / 2)
+				}
+				if (this.score1 < this.score2) {
+					this.ctx.fillText(`IRONMAN WINS!!!`, 300, this.height / 2)
+					this.ctx.strokeText(`IRONMAN WINS!!!`, 300, this.height / 2)
+				}
+				clearInterval(this.interval)
+			}
 		}
 	}
 }
