@@ -374,13 +374,13 @@ let Game = {
 			if (Math.abs(this.score1 - this.score2) > 1) {
 				if (this.score1 > this.score2) {
 					document.getElementById('cheers').play()
-					this.ctx.fillStyle = '#f7ff14'
+					this.ctx.fillStyle = '#000f73'
 					this.ctx.fillText(`CAPTAIN AMERICA WINS!!!`, 150, this.height / 2)
 					this.ctx.strokeText(`CAPTAIN AMERICA WINS!!!`, 150, this.height / 2)
 				}
 				if (this.score1 < this.score2) {
 					document.getElementById('cheers').play()
-					this.ctx.fillStyle = '#f7ff14'
+					this.ctx.fillStyle = '#8f0808'
 					this.ctx.fillText(`IRONMAN WINS!!!`, 300, this.height / 2)
 					this.ctx.strokeText(`IRONMAN WINS!!!`, 300, this.height / 2)
 				}
