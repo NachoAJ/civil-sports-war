@@ -52,7 +52,7 @@ let Game = {
 			LEFT: { code: 37, down: false },
 			JUMP: { code: 38, down: false }
 		})
-		this.ball = new Ball(this.ctx, this.height, this.width, this.width / 2, 'images/ball.png')
+		this.ball = new Ball(this.ctx, this.height, this.width, this.width / 2, 'images/ball-sprite.png')
 		this.basket = new Basket(this.ctx, this.width, this.height, this.width - 30, 1, -10)
 		this.basket2 = new Basket(this.ctx, this.width, this.height, 15, -1, 23)
 		this.scoreboard = ScoreBoard
@@ -73,7 +73,7 @@ let Game = {
 	},
 
 	moveAll: function() {
-		this.ball.move()
+		this.ball.move(this.framesCounter)
 		this.player.move(this.framesCounter)
 		this.player2.move(this.framesCounter)
 		this.colisions()
@@ -275,7 +275,7 @@ let Game = {
 			LEFT: { code: 37, down: false },
 			JUMP: { code: 38, down: false }
 		})
-		this.ball = new Ball(this.ctx, this.height, this.width, this.width / 4, 'images/volleyball.png')
+		this.ball = new Ball(this.ctx, this.height, this.width, this.width / 4, 'images/volleyball-sprite.png')
 		this.scoreboard = ScoreBoard
 		this.scoreboard.init(this.ctx)
 	},
@@ -293,9 +293,21 @@ let Game = {
 		Background.move(this.width)
 		this.player.move(this.framesCounter)
 		this.player2.move(this.framesCounter)
-		this.ball.move()
+		this.ball.move(this.framesCounter)
+		this.perksVolley()
 		this.volleyHit()
 		this.volleyColisions()
+	},
+
+	perksVolley: function() {
+		if (this.score1 - this.score2 > 2) this.player2.velX = this.player2.velX0 + 7
+		else this.player2.velX = this.player2.velX0
+		if (this.score2 - this.score1 > 2) this.player.velX = this.player.velX0 + 7
+		else this.player.velX = this.player.velX0
+		if (this.score2 - this.score1 > 5) this.player.velJump = -15
+		else this.player.velJump = this.player.velJump0
+		if (this.score1 - this.score2 > 5) this.player2.velJump = -15
+		else this.player2.velJump = this.player2.velJump0
 	},
 
 	volleyHit: function() {
