@@ -11,8 +11,8 @@ let Game = {
 	initBasket: function() {
 		this.canvas = document.getElementById('game-basket')
 		this.ctx = this.canvas.getContext('2d')
-		this.width = window.innerWidth * 0.99
-		this.height = window.innerHeight * 0.99
+		this.width = window.innerWidth
+		this.height = window.innerHeight
 		this.canvas.width = this.width
 		this.canvas.height = this.height
 		this.startBasket()
@@ -21,8 +21,8 @@ let Game = {
 	initVolley: function() {
 		this.canvas = document.getElementById('game-volley')
 		this.ctx = this.canvas.getContext('2d')
-		this.width = window.innerWidth * 0.99
-		this.height = window.innerHeight * 0.99
+		this.width = window.innerWidth
+		this.height = window.innerHeight
 		this.canvas.width = this.width
 		this.canvas.height = this.height
 		this.startVolley()
@@ -226,7 +226,7 @@ let Game = {
 			this.ball.velX = 0
 			this.player.x = 0
 			this.player2.x = this.width - this.player2.width
-			document.getElementById('crowd').play()
+			document.getElementById('net').play()
 			this.score1++
 		}
 
@@ -241,7 +241,7 @@ let Game = {
 			this.ball.velX = 0
 			this.player.x = 0
 			this.player2.x = this.width - this.player2.width
-			document.getElementById('crowd').play()
+			document.getElementById('net').play()
 			this.score2++
 		}
 	},
@@ -305,6 +305,7 @@ let Game = {
 			this.player.x < this.ball.x + this.ball.width &&
 			this.player.y - 70 > this.ball.y
 		) {
+			document.getElementById('bounce').play()
 			this.ball.velX = Math.random() * (7 - 5) + 5
 			this.ball.velY = -(Math.random() * (18 - 15) + 15)
 		}
@@ -314,6 +315,7 @@ let Game = {
 			this.player2.x < this.ball.x + this.ball.width &&
 			this.player2.y - 70 > this.ball.y
 		) {
+			document.getElementById('bounce').play()
 			this.ball.velX = -(Math.random() * (7 - 5) + 5)
 			this.ball.velY = -(Math.random() * (18 - 15) + 15)
 		}
@@ -343,7 +345,6 @@ let Game = {
 			this.ball.velX = 0
 			this.player2.x = (this.width * 3) / 4
 			this.player.x = this.width / 4
-			document.getElementById('crowd').play()
 			this.score2++
 		}
 		if (this.ball.y + this.ball.height === this.height - 100 && this.ball.x > VolleyNet.x + VolleyNet.width) {
@@ -352,7 +353,6 @@ let Game = {
 			this.ball.velX = 0
 			this.player2.x = (this.width * 3) / 4
 			this.player.x = this.width / 4
-			document.getElementById('crowd').play()
 			this.score1++
 		}
 	},
@@ -361,10 +361,14 @@ let Game = {
 		if (this.score1 > 10 || this.score2 > 10) {
 			if (Math.abs(this.score1 - this.score2) > 1) {
 				if (this.score1 > this.score2) {
+					document.getElementById('cheers').play()
+					this.ctx.fillStyle = '#f7ff14'
 					this.ctx.fillText(`CAPTAIN AMERICA WINS!!!`, 150, this.height / 2)
 					this.ctx.strokeText(`CAPTAIN AMERICA WINS!!!`, 150, this.height / 2)
 				}
 				if (this.score1 < this.score2) {
+					document.getElementById('cheers').play()
+					this.ctx.fillStyle = '#f7ff14'
 					this.ctx.fillText(`IRONMAN WINS!!!`, 300, this.height / 2)
 					this.ctx.strokeText(`IRONMAN WINS!!!`, 300, this.height / 2)
 				}

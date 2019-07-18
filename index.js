@@ -1,13 +1,16 @@
 window.onload = () => {
+	// document.getElementById('music').play()
 	document.getElementById('start-basket').onclick = function() {
 		document.getElementsByClassName('container')[0].className = 'display-none'
 		document.getElementsByTagName('h1')[0].className = 'display-none'
+		document.getElementById('music').parentNode.removeChild(document.getElementById('music'))
 		document.getElementById('game-volley').className = 'display-none'
 		document.getElementById('game-basket').className = 'display'
 		Game.initBasket('game-basket')
 	}
 	document.getElementById('start-volley').onclick = function() {
 		document.getElementsByClassName('container')[0].className = 'display-none'
+		document.getElementById('music').parentNode.removeChild(document.getElementById('music'))
 		document.getElementById('game-basket').className = 'display-none'
 		document.getElementsByTagName('h1')[0].className = 'display-none'
 		document.getElementById('game-volley').className = 'display'
